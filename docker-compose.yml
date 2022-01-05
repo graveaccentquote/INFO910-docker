@@ -1,0 +1,25 @@
+version: '3.1'
+
+services:
+  nodeapp:
+    image: nodeapp:latest
+    networks:
+      - default
+    ports:
+      - "5000:8080"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:alpine
+    networks:
+      - default
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: examplepw
+      POSTGRES_USER: myuser
+      POSTGRES_DB: database
+
+networks:
+  default:
