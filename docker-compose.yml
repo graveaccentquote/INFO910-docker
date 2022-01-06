@@ -15,7 +15,7 @@ services:
     networks:
       - default
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_PASSWORD: examplepw
       POSTGRES_USER: myuser

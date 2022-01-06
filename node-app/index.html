@@ -1,0 +1,44 @@
+<html>
+<head>
+  <title>Super Appli</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <div style="margin:100px;">
+   
+<nav class="navbar navbar-inverse navbar-static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/">Ma super liste</a>
+    <ul class="nav navbar-nav">
+      <li class="active">
+        <a href="/">Insertion</a>
+      </li>
+      <li>
+        <a href="/list">Voir Liste</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+    <div class="jumbotron"  style="padding:40px;">
+        <form action="/" method="post">
+            <div class="form-group">
+              <label for="firstName">Prénom</label>
+              <input type="text" name="firstName" class="form-control" id="firstName" placeholder="Ex: Jean">
+            </div>
+            <div class="form-group">
+                <label for="lastName">Nom</label>
+                <input type="text" name="lastName" class="form-control" id="lastName" placeholder="Ex: Dupont">
+            </div>
+            <div class="form-group">
+              <label for="age">Age</label>
+              <input type="number" name="age" class="form-control" id="age" placeholder="Ex: 18">
+          </div>
+            <button type="submit" class="btn btn-primary">Insérer</button>
+          </form>
+    </div>
+  </div>
+</body>
+</html>

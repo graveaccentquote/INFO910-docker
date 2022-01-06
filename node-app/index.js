@@ -1,6 +1,13 @@
 const express = require('express');
+const path = require('path');
+const bodyParser = require("body-parser");
+const cors = require('cors');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors());
+app.options('*', cors());
 
 var host = 'db'
 var port = '5432'
@@ -8,54 +15,28 @@ var port = '5432'
 var pgp = require('pg-promise')(/* options */)
 var db = pgp(`postgres://myuser:examplepw@${host}:${port}/database`)
 
-// tests connection and returns Postgres server version,
-// if successful; or else rejects with connection error:
-async function testConnection() {
-  const c = await db.connect(); // try to connect
-  c.done(); // success, release connection
-  return c.client.serverVersion; // return server version
-}
+app.post('/', async (req, res) => {
 
-app.get('/insert', async (req, res) => {
-  await db.none('CREATE TABLE tbl_test(first_name varchar(255), last_name varchar(255), age varchar(255))')
   await db.none('INSERT INTO tbl_test(first_name, last_name, age) VALUES(${name.first}, $<name.last>, $/age/)', {
-    name: {first: 'John', last: 'Dow'},
-    age: 30
+    name: {first: req.body.firstName, last: req.body.lastName},
+    age: req.body.age
   });
 
-  res.send("DONE")
+  res.sendFile(path.join(__dirname+'/index.html'))
 })
 
 app.get('/', async (req, res) => {
-  // let ver = await testConnection()
-  // console.log(ver)
-
-  
-  // db.one('SELECT 1 FROM tbl_test AS value')
-  // .then(function (data) {
-  //   res.send('Hello World!!!')
-  //   console.log('DATA:', data.value)
-  // })
-  // .catch(function (error) {
-  //   res.send('AAAAAAAAAAAAAAAAAAAAH!')
-  //   console.log('ERROR:', error)
-  // })
-
+  await db.none('CREATE TABLE IF NOT EXISTS tbl_test(first_name varchar(255), last_name varchar(255), age varchar(255))')
+  res.sendFile(path.join(__dirname+'/index.html'))
 })
 
-app.get('/user/:name', async (request, response) => {
-  const name = request.params.name;
-
-  let data = await db.any('SELECT * FROM tbl_test WHERE first_name = $1', name)
-  console.log(data)
-  response.send(data);
+app.get('/users', async (request, response) => {
+  let data = await db.any('SELECT * FROM tbl_test')
+  response.json(data);
 })
 
-app.get('/user/:id', async (request, response) => {
-  const id = request.params.id;
-  // ... delete user with given id
-
-  response.send('User removed');
+app.get('/list', async (request, response) => {
+  response.sendFile(path.join(__dirname+'/list.html'))
 })
 
 app.listen(8080, () => console.log('Server is up and running'));
