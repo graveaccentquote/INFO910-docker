@@ -1,7 +1,7 @@
 Projet pour le cours INFO901 - Introduction au DevOps
 
 
-Partie Docker :
+# Partie Docker :
 
 * L'image docker se compose :
   * D'une application node.js pour la partie front, faite à la main.
@@ -33,7 +33,7 @@ L'application permet de persister des objets contenant un nom, un prénom et un 
 ![screenshot2](https://puu.sh/IB5Wf/27542afccb.png)
 
 
-Partie Kubernetes :
+# Partie Kubernetes :
 
 Pour lancer le cluster avec Minikube en local :
 
