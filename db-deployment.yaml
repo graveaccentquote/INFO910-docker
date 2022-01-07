@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: db
+  strategy: {}
+  template:
+    spec:
+      containers:
+        - env:
+            - name: POSTGRES_DB
+              value: database
+            - name: POSTGRES_PASSWORD
+              value: examplepw
+            - name: POSTGRES_USER
+              value: myuser
+          image: postgres:alpine
+          name: db
+          ports:
+            - containerPort: 5432
+          resources: {}
+      restartPolicy: Always
+status: {}
