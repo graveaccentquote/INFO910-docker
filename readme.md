@@ -31,3 +31,14 @@ L'application permet de persister des objets contenant un nom, un prénom et un 
 ![screenshot](https://puu.sh/IB5VY/44a4ad8782.png)
 
 ![screenshot2](https://puu.sh/IB5Wf/27542afccb.png)
+
+
+Partie Kubernetes :
+
+Pour lancer le cluster avec Minikube en local :
+
+    minikube start
+    
+Pour lancer les pods avec notre app :
+
+    kubectl apply -f db-deployment.yaml,db-service.yaml,default-networkpolicy.yaml,nodeapp-deployment.yaml,nodeapp-service.yaml
