@@ -26,7 +26,7 @@ ou
     docker-compose up --build 
 
 
-L'application permet de persister des objets contenant un nom, un prénom et un âge et de récupérer la liste depuis la BDD.
+L'application permet de persister des objets contenant un nom, un prénom et un âge et de récupérer la liste depuis la BDD. Pour accéder à l'application, il faut se rendre sur http://localhost:5000 :
 
 ![screenshot](https://puu.sh/IB5VY/44a4ad8782.png)
 
